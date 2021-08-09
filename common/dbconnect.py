@@ -2,11 +2,12 @@
 import sqlite3
 # importing only required function to boost performance and optimise memory utilisation
 from pandas import read_sql, read_csv
+import secret
 
 
 def connect_to_game_db():
     """this function will connect to sqlite database game and return cursor to execute queries"""
-    con = sqlite3.connect('./data/game.db')
+    con = sqlite3.connect('../data/game.db')
     cur = con.cursor()
     return cur, con
 
@@ -56,14 +57,18 @@ def update_player_score(cur, con, player_id, player_score):
                 [player_score, player_id])
     con.commit()
 
+
 def get_players_dashboard(con, top_rank=10):
     """function will return top ranking players based on their score"""
-    qry = "select hangman_players.player_name, hangman_players_score.player_score " \
+    qry = "select hangman_players.player_name as 'PlayerName', hangman_players_score.player_score as 'Score'" \
           "from hangman_players, hangman_players_score " \
           "where hangman_players.player_id = hangman_players_score.player_id " \
-          "order by hangman_players_score.player_score desc, hangman_players_score.player_id desc " \
+          "order by hangman_players_score.player_score desc, hangman_players_score.player_id asc " \
           "limit ?"
     df_qry_result_dataframe = read_sql(qry, params=[top_rank], con=con)
+    df_qry_result_dataframe.index += 1
+    df_qry_result_dataframe.reset_index(inplace=True)
+    df_qry_result_dataframe.rename(columns={'index':'Rank'},inplace=True)
     return df_qry_result_dataframe
 
 
@@ -83,6 +88,9 @@ def load_hangman_puzzle(con):
     """this function will load puzzle file into database, should only be executed by admin or during installation"""
     # load hangman puzzle file
     df_puzzle_file = read_csv('../data/hangman_puzzle.csv')
+    # generate key, encrypt data
+    key = secret.generate_key()
+    df_puzzle_file['PUZZLE_SOLUTION'] = df_puzzle_file['PUZZLE_SOLUTION'].apply(lambda x: secret.encrypt_message(x.upper(), key))
     # load data into table
     df_puzzle_file.to_sql('hangman_puzzles', con=con, if_exists='append', index=False)
 
