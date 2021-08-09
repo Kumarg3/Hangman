@@ -33,18 +33,6 @@ class Hangman:
         # connect to database and update database with player name and return player id
         self.player_id = dbconnect.insert_player_name(self.cur, self.con, self.player_name)
 
-    def __get_player_name__(self):
-        """function will return player name for current player"""
-        return self.player_name
-
-    def __reset_number_of_wrong_choices__(self, wrong_choice_counter):
-        """function will reset number of wrong choices during game"""
-        self.wrong_choice_counter = wrong_choice_counter
-
-    def __get_number_of_wrong_choices__(self):
-        """function will return number of wrong choices left"""
-        return self.wrong_choice_counter
-
     def __save_winner_point__(self):
         """function will save player point in database and return updated point for player"""
         self.player_point = self.player_point + self.winner_point
