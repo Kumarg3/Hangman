@@ -7,7 +7,8 @@ This project contains Hangman game code. Below is game flow:
 - Once puzzle is over, screen will ask if you want to play more -> choose the Y option and enjoy
 - Screen will also display the scoreboard in which players rank will display, when you win or loose
 
-#### *Two players can play the game at same time and with same name, as game statistics is stored based on each game played.
+#### *Two players with the same name can play the game at same time, as game statistics is stored based on each game played. 
+#### *If you do not enter your name, stats will be tracked with 'Unknown Player'
 
 # Project Structure
 Hangman<br>
