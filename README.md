@@ -2,9 +2,9 @@
 This project contains Hangman game code. Below is game flow:
 - Click on run.bat file -> Console screen will open
 - Input your name -> Puzzle information will be displayed
-- Guess the character, based on hint -> you will have 6 chances to guess wrong character
+- Guess the character, based on hint -> you will have 6 chances to guess right character
 - If you win 10 points will be awarded, if you loose no points will be given
-- Once puzzle is over, screen will ask if you want to play more -> choose the option and enjoy
+- Once puzzle is over, screen will ask if you want to play more -> choose the Y option and enjoy
 - Screen will also display the scoreboard in which players rank will display, when you win or loose
 
 #### *Two players can play the game at same time and with same name, as game statistics is stored based on each game played.
