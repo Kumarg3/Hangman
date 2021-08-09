@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # import libraries
 import game.hangman as gh
 

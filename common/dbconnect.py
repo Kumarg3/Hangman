@@ -7,7 +7,7 @@ import secret
 
 def connect_to_game_db():
     """this function will connect to sqlite database game and return cursor to execute queries"""
-    con = sqlite3.connect('../data/game.db')
+    con = sqlite3.connect('./data/game.db')
     cur = con.cursor()
     return cur, con
 
