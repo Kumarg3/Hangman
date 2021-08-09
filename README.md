@@ -5,7 +5,7 @@ This project contains Hangman game code. Below is game flow:
 - Guess the character, based on hint -> you will have 6 chances to guess wrong character
 - If you win 10 points will be awarded, if you loose no points will be given
 - Once puzzle is over, screen will ask if you want to play more -> choose the option and enjoy
-- Screen will also display the scoreboard in which rank will show of the players when you win or loose
+- Screen will also display the scoreboard in which players rank will display, when you win or loose
 
 # Project Structure
 Hangman<br>
